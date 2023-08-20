@@ -1,0 +1,28 @@
+{
+  "Modules": [
+    {
+      "assemblyFile": "ModuleA.dll",
+      "moduleType": "ModuleA.ModuleAModule, ModuleA, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "moduleName": "ModuleAModule",
+      "startupLoaded": "True"
+    },
+    {
+      "assemblyFile": "ModuleB.dll",
+      "moduleType": "ModuleB.ModuleAModule, ModuleB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "moduleName": "ModuleBModule",
+      "startupLoaded": "True"
+    }
+  ],
+  "Pages": [
+    {
+      "id": "",
+      "name": "",
+      "description": "",
+      "DisplayName": "",
+      "ParentId": null,
+      "Icon": "",
+      "Assembly": "",
+      "IsAvailable": ""
+    }
+  ]
+}

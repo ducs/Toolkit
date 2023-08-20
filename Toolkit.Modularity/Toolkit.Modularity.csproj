@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Modularity\**" />
+    <EmbeddedResource Remove="Modularity\**" />
+    <None Remove="Modularity\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Modularity\AssemblyResolver.cs" />
+    <Compile Include="Modularity\Configuration\ConfigurationModuleCatalog.cs" />
+    <Compile Include="Modularity\Configuration\ConfigurationStore.cs" />
+    <Compile Include="Modularity\Exception\CyclicDependencyFoundException.cs" />
+    <Compile Include="Modularity\Exception\DuplicateModuleException.cs" />
+    <Compile Include="Modularity\interface\IAssemblyResolver.cs" />
+    <Compile Include="Modularity\interface\IConfigurationStore.Desktop.cs" />
+    <Compile Include="Modularity\interface\IModule.cs" />
+    <Compile Include="Modularity\interface\IModuleCatalog.cs" />
+    <Compile Include="Modularity\interface\IModuleCatalogItem.cs" />
+    <Compile Include="Modularity\interface\IModuleGroupsCatalog.cs" />
+    <Compile Include="Modularity\interface\IModuleInfo.cs" />
+    <Compile Include="Modularity\interface\IModuleInfoGroup.cs" />
+    <Compile Include="Modularity\BaseInfo\InitializationMode.cs" />
+    <Compile Include="Modularity\Exception\ModularityException.cs" />
+    <Compile Include="Modularity\Attribute\ModuleAttribute.cs" />
+    <Compile Include="Modularity\BaseInfo\ModuleCatalog.cs" />
+    <Compile Include="Modularity\BaseInfo\ModuleCatalogBase.cs" />
+    <Compile Include="Modularity\Configuration\ModuleConfigurationElement.cs" />
+    <Compile Include="Modularity\Configuration\ModuleConfigurationElementCollection.cs" />
+    <Compile Include="Modularity\Configuration\ModuleDependencyCollection.cs" />
+    <Compile Include="Modularity\Configuration\ModuleDependencyConfigurationElement.cs" />
+    <Compile Include="Modularity\ModuleDependencySolver.cs" />
+    <Compile Include="Modularity\BaseInfo\ModuleInfo.cs" />
+    <Compile Include="Modularity\Configuration\ModulesConfigurationSection.cs" />
+    <Compile Include="Modularity\BaseInfo\ModuleState.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

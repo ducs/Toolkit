@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <Import Project="..\Toolkit.App.Share\Toolkit.App.Share.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Toolkit.Launcher.Debugger": {
+      "commandName": "Project",
+      "commandLineArgs": "--username admin\r\n--password password",
+      "remoteDebugEnabled": false,
+      "hotReloadEnabled": false
+    }
+  }
+}
