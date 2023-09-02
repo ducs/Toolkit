@@ -14,8 +14,13 @@ using Toolkit.Core.Contracts.Services;
 using Toolkit.Core.Contracts.Services.Crypt;
 using Toolkit.Models;
 using Toolkit.Services;
+using Toolkit.Services.Contracts;
+using Toolkit.ViewModels;
 using Toolkit.Views.Windows;
+using Wpf.Ui;
+using Wpf.Ui.Appearance;
 using Wpf.Ui.Markup;
+using WToolkit.Services;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
 
 #nullable disable
@@ -50,11 +55,11 @@ namespace Toolkit
         /// </summary>
         /// <typeparam name="T">Type of the service to get.</typeparam>
         /// <returns>Instance of the service or <see langword="null"/>.</returns>
-        public static T? GetService<T>()
+        public static T? GetRequiredService<T>() 
             where T : class
         {
-            Debug.Assert((_host.Services.GetService(typeof(T)) as T) != null);
-            return _host.Services.GetService(typeof(T)) as T;
+            Debug.Assert((_host.Services.GetRequiredService(typeof(T)) as T) != null);
+            return _host.Services.GetRequiredService(typeof(T)) as T;
         }
 
         /// <summary>
@@ -68,7 +73,7 @@ namespace Toolkit
 
             //_options = App.GetService<IOptionsSnapshot<IAppConfigModel>>();
 
-            if (Options.Value.Theme != Wpf.Ui.Appearance.ThemeType.Unknown
+            if (Options.Value.Theme != ThemeType.Unknown
                 && Options.Value.Theme != Wpf.Ui.Appearance.Theme.GetAppTheme())
             {
                 //Wpf.Ui.Appearance.Theme.Apply(Wpf.Ui.Appearance.ThemeType.Dark);
@@ -83,7 +88,7 @@ namespace Toolkit
                 if (themedict is ThemesDictionary themesDictionary)
                 {
                     themesDictionary.Theme = Options.Value.Theme;//Wpf.Ui.Appearance.ThemeType.Dark;
-                    Wpf.Ui.Appearance.Theme.Apply(Options.Value.Theme);// Wpf.Ui.Appearance.ThemeType.Dark);
+                    Theme.Apply(Options.Value.Theme);// Wpf.Ui.Appearance.ThemeType.Dark);
                 }
             }
 
@@ -97,12 +102,12 @@ namespace Toolkit
             {
                 //取得密码
                 //string cryptCode = await GetService<IGetCryptCodeService>().GetCryptCodeAsync("GlobalCrypt");
-                string cryptCode = await GetService<IGetCryptCodeService>().GetCryptCodeAsync("GlobalCrypt");
+                string cryptCode = await GetRequiredService<IGetCryptCodeService>().GetCryptCodeAsync("GlobalCrypt");
 
                 //解密密码
-                string DeCryptPassword = GetService<ICryptService>().Decrypt(password, cryptCode);
+                string DeCryptPassword = GetRequiredService<ICryptService>().Decrypt(password, cryptCode);
                 //登陆验证
-                if (!(await GetService<ILoginService>().LoginAsync(username, DeCryptPassword)))
+                if (!(await GetRequiredService<ILoginService>().LoginAsync(username, DeCryptPassword)))
                 {
                     Current.Shutdown();
                 };
@@ -137,10 +142,13 @@ namespace Toolkit
             (hostingContext, configuration) =>
             {
                 configuration.Sources.Clear();
+                
+
                 IHostEnvironment env = hostingContext.HostingEnvironment;
 
+                //configuration.SetBasePath(AppContext.BaseDirectory);
                 configuration
-                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)//Directory.GetCurrentDirectory()
+                    .SetBasePath(AppContext.BaseDirectory)//hostingContext.HostingEnvironment.ContentRootPath//Directory.GetCurrentDirectory()
                     .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                     .AddJsonFile($"modules.json", optional: false, reloadOnChange: true)
@@ -154,22 +162,24 @@ namespace Toolkit
                 services.AddHostedService<ApplicationHostService>();
 
                 // Page resolver service
-                services.AddSingleton<IPageService, PageService>();
+                //services.AddSingleton<IPageService, PageService>();
 
                 // Theme manipulation
-                services.AddSingleton<IThemeService, ThemeService>();
-
+                //services.AddSingleton<IThemeService, ThemeService>();
                 // TaskBar manipulation
-                services.AddSingleton<ITaskBarService, TaskBarService>();
-
+                //services.AddSingleton<ITaskBarService, TaskBarService>();
                 // Service containing navigation, same as INavigationWindow... but without window
-                services.AddSingleton<INavigationService, NavigationService>();
+                //services.AddSingleton<INavigationService, NavigationService>();
 
                 services.AddSingleton<IConfigService, JsonConfigService>();
 
-                // Main window with navigation
-                services.AddScoped<INavigationWindow, MainWindow>();
-                services.AddScoped<ViewModels.MainWindowViewModel>();
+                // Main window container with navigation
+                services.AddSingleton<IWindow, MainWindow>();
+                services.AddSingleton<MainWindowViewModel>();
+                services.AddSingleton<INavigationService, NavigationService>();
+                services.AddSingleton<ISnackbarService, SnackbarService>();
+                services.AddSingleton<IContentDialogService, ContentDialogService>();
+                services.AddSingleton<WindowsProviderService>();
 
                 // Views and ViewModels
                 services.AddScoped<Views.Pages.DashboardPage>();
@@ -181,7 +191,7 @@ namespace Toolkit
 
                 services.AddScoped<ILoginService, LoginService>();
                 services.AddScoped<ICryptService, CryptService>();
-                services.AddScoped<IGetCryptCodeService, GetCryptCodeService>();
+                services.AddScoped<IGetCryptCodeService, GetJsonCryptCodeService>();
 
                 //model  每次请求都是新的实例
                 services.AddTransient<INavigationViewDto, NavigationViewModel>();
@@ -225,10 +235,10 @@ namespace Toolkit
 
             */
             //Type iAppConfigModel = App.GetService<IAppConfigModel>().GetType();
-            _options = App.GetService<IOptionsSnapshot<IAppConfigModel>>();
+            _options = App.GetRequiredService<IOptionsSnapshot<IAppConfigModel>>();
 
             Debug.Assert(_options.Value != null &&
-                _options.Value.Theme != Wpf.Ui.Appearance.ThemeType.Unknown);
+                _options.Value.Theme != ApplicationTheme.Unknown);
 
             Modularity.ConfigurationModuleCatalog ConfigurationModuleCatalog =
                 new Modularity.ConfigurationModuleCatalog();

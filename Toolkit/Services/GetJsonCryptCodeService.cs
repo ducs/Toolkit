@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Toolkit.Core.Contracts.Services;
-using Toolkit.Core.Contracts.Services.Decrypt;
+using Toolkit.Core.Contracts.Services.Crypt;
 
 #nullable disable
 
@@ -24,13 +24,13 @@ namespace Toolkit.Services
         public async Task<string> GetCryptCodeAsync(string key)
         //public string GetCryptCode(string key)
         {
-            Debug.Assert(App.GetService<IConfigService>()
+            Debug.Assert(App.GetRequiredService<IConfigService>()
                 .GetConfig<List<JsonCryptCode>>("CryptCode")
                 .Where<JsonCryptCode>(i => i.Key == key).FirstOrDefault()
                  != null);
 
             return await Task<string>.Run(
-                () => App.GetService<IConfigService>()
+                () => App.GetRequiredService<IConfigService>()
                 .GetConfig<List<JsonCryptCode>>("CryptCode")
                 .Where<JsonCryptCode>(i => i.Key == key).FirstOrDefault().Code
                 );

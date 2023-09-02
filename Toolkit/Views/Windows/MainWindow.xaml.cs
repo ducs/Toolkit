@@ -6,30 +6,43 @@ using System.Windows.Interop;
 using Toolkit.Infrastructure.Common;
 using Toolkit.Infrastructure.UI;
 using Toolkit.Properties;
-using Wpf.Ui.Contracts;
+using Toolkit.Services.Contracts;
+using Toolkit.Views.Pages;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
 
 namespace Toolkit.Views.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : INavigationWindow
+    public partial class MainWindow : IWindow
     {
-        public ViewModels.MainWindowViewModel ViewModel
-        {
-            get;
-        }
 
-        public MainWindow(ViewModels.MainWindowViewModel viewModel, IPageService pageService,
-            INavigationService navigationService)
+        public MainWindow(ViewModels.MainWindowViewModel viewModel,
+        INavigationService navigationService,
+        IServiceProvider serviceProvider,
+        ISnackbarService snackbarService,
+        IContentDialogService contentDialogService)
         {
+            Wpf.Ui.Appearance.SystemThemeWatcher.Watch(this);
+
             ViewModel = viewModel;
             DataContext = this;
 
             InitializeComponent();
-            SetPageService(pageService);
+            snackbarService.SetSnackbarPresenter(SnackbarPresenter);
+            navigationService.SetNavigationControl(NavigationView);
+            contentDialogService.SetContentPresenter(RootContentDialog);
 
-            navigationService.SetNavigationControl(RootNavigation);
+            NavigationView.SetServiceProvider(serviceProvider);
+            NavigationView.Loaded += (_, _) => NavigationView.Navigate(typeof(DashboardPage));
+
+        }
+
+        public ViewModels.MainWindowViewModel ViewModel
+        {
+            get;
         }
 
         #region INavigationWindow methods

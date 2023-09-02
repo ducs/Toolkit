@@ -21,7 +21,7 @@ namespace Toolkit.Core.Contracts.Models
         /// </summary>
         bool MultiRuntime { get; set; }
 
-        ThemeType Theme { get; set; }
+        Wpf.Ui.Appearance.ThemeType Theme { get; set; }
 
         string ConfigurationsFolder { get; set; }
 
