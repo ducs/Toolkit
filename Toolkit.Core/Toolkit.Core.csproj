@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WPF-UI" Version="2.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Contracts\Entity\" />
     <Folder Include="EntityInterface\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="3.0.0-preview.6" />
   </ItemGroup>
 
 </Project>

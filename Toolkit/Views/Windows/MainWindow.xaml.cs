@@ -10,6 +10,8 @@ using Toolkit.Services.Contracts;
 using Toolkit.Views.Pages;
 using Wpf.Ui;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Controls.Interfaces;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace Toolkit.Views.Windows
 {
@@ -19,32 +21,32 @@ namespace Toolkit.Views.Windows
     public partial class MainWindow : IWindow
     {
 
-        public MainWindow(ViewModels.MainWindowViewModel viewModel,
-        INavigationService navigationService,
-        IServiceProvider serviceProvider,
-        ISnackbarService snackbarService,
+        /*  public MainWindow(ViewModels.MainWindowViewModel viewModel,
+         INavigationService navigationService,
+         IServiceProvider serviceProvider,
+         ISnackbarService snackbarService,
         IContentDialogService contentDialogService)
-        {
-            Wpf.Ui.Appearance.SystemThemeWatcher.Watch(this);
+         {
+             Wpf.Ui.Appearance.Watcher.Watch(this);
 
-            ViewModel = viewModel;
-            DataContext = this;
+             ViewModel = viewModel;
+             DataContext = this;
 
-            InitializeComponent();
-            snackbarService.SetSnackbarPresenter(SnackbarPresenter);
-            navigationService.SetNavigationControl(NavigationView);
-            contentDialogService.SetContentPresenter(RootContentDialog);
+             InitializeComponent();
+             snackbarService.SetSnackbarPresenter(SnackbarPresenter);
+             navigationService.SetNavigationControl(NavigationView);
+             contentDialogService.SetContentPresenter(RootContentDialog);
 
-            NavigationView.SetServiceProvider(serviceProvider);
-            NavigationView.Loaded += (_, _) => NavigationView.Navigate(typeof(DashboardPage));
+             NavigationView.SetServiceProvider(serviceProvider);
+             NavigationView.Loaded += (_, _) => NavigationView.Navigate(typeof(DashboardPage));
 
-        }
+         } */
 
         public ViewModels.MainWindowViewModel ViewModel
         {
             get;
         }
-
+        /*
         #region INavigationWindow methods
 
         public Frame GetFrame()
@@ -66,7 +68,7 @@ namespace Toolkit.Views.Windows
             => Close();
 
         #endregion INavigationWindow methods
-
+        */
         /// <summary>
         /// Raises the closed event.
         /// </summary>

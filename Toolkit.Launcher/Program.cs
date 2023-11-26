@@ -60,13 +60,13 @@ namespace Toolkit.Launcher
             {
                 if (MultiRuntime)
                 {
-                    AppExt.Main(argc);
+                    AppExt.Main();//argc
                 }
                 else
                 {
                     if (mutex.WaitOne(TimeSpan.Zero, true))
                     {
-                        AppExt.Main(argc);
+                        AppExt.Main();//argc
                     }
                     else
                     {

@@ -12,7 +12,7 @@ namespace Toolkit.Models
         public string AppTitle { get; set; }
 
         public bool MultiRuntime { get; set; }
-        public ThemeType Theme { get; set; }
+        public ApplicationTheme Theme { get; set; }
 
         public string ConfigurationsFolder { get; set; }
 

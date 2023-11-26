@@ -20,6 +20,8 @@ using Toolkit.Views.Windows;
 using Wpf.Ui;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Markup;
+using Wpf.Ui.Mvvm.Contracts;
+using Wpf.Ui.Mvvm.Services;
 using WToolkit.Services;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
 
@@ -48,7 +50,7 @@ namespace Toolkit
         // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
         // https://docs.microsoft.com/dotnet/core/extensions/configuration
         // https://docs.microsoft.com/dotnet/core/extensions/logging
-        private static readonly IHost _host;
+        private static IHost _host;
 
         /// <summary>
         /// Gets registered service.
@@ -67,6 +69,86 @@ namespace Toolkit
         /// </summary>
         private async void OnStartup(object sender, StartupEventArgs e)
         {
+            _host = Host
+           .CreateDefaultBuilder()
+           .ConfigureAppConfiguration
+           (
+           //c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
+           (hostingContext, configuration) =>
+           {
+               configuration.Sources.Clear();
+
+
+               IHostEnvironment env = hostingContext.HostingEnvironment;
+
+               //configuration.SetBasePath(AppContext.BaseDirectory);
+               configuration
+                   .SetBasePath(AppContext.BaseDirectory)//hostingContext.HostingEnvironment.ContentRootPath//Directory.GetCurrentDirectory()
+                   .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+                   .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                   .AddJsonFile($"modules.json", optional: false, reloadOnChange: true)
+                   .AddCommandLine(e.Args)
+                   .AddEnvironmentVariables();
+               // .AddCommandLine(_args);
+               ConfigurationBuilder = configuration;
+           })
+           .ConfigureServices((hostingContext, services) =>
+           {
+               // App Host
+               services.AddHostedService<ApplicationHostService>();
+
+               // Page resolver service
+               //services.AddSingleton<IPageService, PageService>();
+
+               // Theme manipulation
+               //services.AddSingleton<IThemeService, ThemeService>();
+               // TaskBar manipulation
+               //services.AddSingleton<ITaskBarService, TaskBarService>();
+               // Service containing navigation, same as INavigationWindow... but without window
+               //services.AddSingleton<INavigationService, NavigationService>();
+
+               services.AddSingleton<IConfigService, JsonConfigService>();
+
+               // Main window container with navigation
+               services.AddSingleton<IWindow, MainWindow>();
+               services.AddSingleton<MainWindowViewModel>();
+               services.AddSingleton<INavigationService, NavigationService>();
+               services.AddSingleton<ISnackbarService, SnackbarService>();
+               //services.AddSingleton<IContentDialogService, ContentDialogService>();
+               services.AddSingleton<WindowsProviderService>();
+
+               // Views and ViewModels
+               services.AddScoped<Views.Pages.DashboardPage>();
+               services.AddScoped<ViewModels.DashboardViewModel>();
+               services.AddScoped<Views.Pages.DataPage>();
+               services.AddScoped<ViewModels.DataViewModel>();
+               services.AddScoped<Views.Pages.SettingsPage>();
+               services.AddScoped<ViewModels.SettingsViewModel>();
+
+               services.AddScoped<ILoginService, LoginService>();
+               services.AddScoped<ICryptService, CryptService>();
+               services.AddScoped<IGetCryptCodeService, GetJsonCryptCodeService>();
+
+               //model  每次请求都是新的实例
+              // services.AddTransient<INavigationViewDto, NavigationViewModel>();
+
+               //全局外置配置接口
+               //services.AddSingleton<IAppConfigModel, AppConfig>();
+               // services.AddScoped(typeof(IOptionsSnapshot<>), typeof(OptionsManager<>));
+
+               //services.AddScoped<IAppConfigModel, AppConfig>();
+
+               services.AddScoped(typeof(IOptionsSnapshot<IAppConfigModel>), typeof(OptionsManager<AppConfig>));
+
+               // Configuration
+               services.Configure<AppConfig>(hostingContext.Configuration.GetSection(nameof(AppConfig)));
+           })
+           .ConfigureLogging(logging =>
+           {
+               //logging.AddConsole();
+           }
+           ).Build();
+
             await _host!.StartAsync();
 
             //var a = App.GetService<IOptionsSnapshot<IAppConfigModel>>();
@@ -134,84 +216,7 @@ namespace Toolkit
 
         static App()
         {
-            _host = Host
-            .CreateDefaultBuilder()
-            .ConfigureAppConfiguration
-            (
-            //c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location));
-            (hostingContext, configuration) =>
-            {
-                configuration.Sources.Clear();
-                
-
-                IHostEnvironment env = hostingContext.HostingEnvironment;
-
-                //configuration.SetBasePath(AppContext.BaseDirectory);
-                configuration
-                    .SetBasePath(AppContext.BaseDirectory)//hostingContext.HostingEnvironment.ContentRootPath//Directory.GetCurrentDirectory()
-                    .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                    .AddJsonFile($"modules.json", optional: false, reloadOnChange: true)
-                    .AddEnvironmentVariables();
-                // .AddCommandLine(_args);
-                ConfigurationBuilder = configuration;
-            })
-            .ConfigureServices((hostingContext, services) =>
-            {
-                // App Host
-                services.AddHostedService<ApplicationHostService>();
-
-                // Page resolver service
-                //services.AddSingleton<IPageService, PageService>();
-
-                // Theme manipulation
-                //services.AddSingleton<IThemeService, ThemeService>();
-                // TaskBar manipulation
-                //services.AddSingleton<ITaskBarService, TaskBarService>();
-                // Service containing navigation, same as INavigationWindow... but without window
-                //services.AddSingleton<INavigationService, NavigationService>();
-
-                services.AddSingleton<IConfigService, JsonConfigService>();
-
-                // Main window container with navigation
-                services.AddSingleton<IWindow, MainWindow>();
-                services.AddSingleton<MainWindowViewModel>();
-                services.AddSingleton<INavigationService, NavigationService>();
-                services.AddSingleton<ISnackbarService, SnackbarService>();
-                services.AddSingleton<IContentDialogService, ContentDialogService>();
-                services.AddSingleton<WindowsProviderService>();
-
-                // Views and ViewModels
-                services.AddScoped<Views.Pages.DashboardPage>();
-                services.AddScoped<ViewModels.DashboardViewModel>();
-                services.AddScoped<Views.Pages.DataPage>();
-                services.AddScoped<ViewModels.DataViewModel>();
-                services.AddScoped<Views.Pages.SettingsPage>();
-                services.AddScoped<ViewModels.SettingsViewModel>();
-
-                services.AddScoped<ILoginService, LoginService>();
-                services.AddScoped<ICryptService, CryptService>();
-                services.AddScoped<IGetCryptCodeService, GetJsonCryptCodeService>();
-
-                //model  每次请求都是新的实例
-                services.AddTransient<INavigationViewDto, NavigationViewModel>();
-
-                //全局外置配置接口
-                //services.AddSingleton<IAppConfigModel, AppConfig>();
-                // services.AddScoped(typeof(IOptionsSnapshot<>), typeof(OptionsManager<>));
-
-                //services.AddScoped<IAppConfigModel, AppConfig>();
-
-                services.AddScoped(typeof(IOptionsSnapshot<IAppConfigModel>), typeof(OptionsManager<AppConfig>));
-
-                // Configuration
-                services.Configure<AppConfig>(hostingContext.Configuration.GetSection(nameof(AppConfig)));
-            })
-            .ConfigureLogging(logging =>
-            {
-                //logging.AddConsole();
-            }
-            ).Build();
+           
         }
 
         /// <summary>
@@ -238,7 +243,7 @@ namespace Toolkit
             _options = App.GetRequiredService<IOptionsSnapshot<IAppConfigModel>>();
 
             Debug.Assert(_options.Value != null &&
-                _options.Value.Theme != ApplicationTheme.Unknown);
+                _options.Value.Theme != ThemeType.Unknown);
 
             Modularity.ConfigurationModuleCatalog ConfigurationModuleCatalog =
                 new Modularity.ConfigurationModuleCatalog();
