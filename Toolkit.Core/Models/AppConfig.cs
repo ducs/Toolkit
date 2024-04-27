@@ -1,5 +1,5 @@
-﻿using Toolkit.Core.Contracts.Models;
-using Wpf.Ui.Appearance;
+﻿using iNKORE.UI.WPF.Modern;
+using Toolkit.Core.Contracts.Models;
 
 namespace Toolkit.Models
 {
@@ -12,7 +12,9 @@ namespace Toolkit.Models
         public string AppTitle { get; set; }
 
         public bool MultiRuntime { get; set; }
-        public ApplicationTheme Theme { get; set; }
+
+        public bool RunAsAdmin { get; set; }
+        public ElementTheme Theme { get; set; }
 
         public string ConfigurationsFolder { get; set; }
 

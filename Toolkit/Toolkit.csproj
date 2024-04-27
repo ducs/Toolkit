@@ -2,42 +2,50 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
-	<EnablePreviewFeatures>true</EnablePreviewFeatures>
+	<TargetFrameworks>net6.0-windows10.0.18362.0</TargetFrameworks>
+	<!--<Nullable>disable</Nullable>-->
     <UseWPF>true</UseWPF>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>applicationIcon.ico</ApplicationIcon>
-    <StartupObject>Toolkit.App</StartupObject>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+	<LangVersion>latest</LangVersion>
+	<EnablePreviewFeatures>true</EnablePreviewFeatures>
+	<AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
+	<StartupObject></StartupObject>
+	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="applicationIcon.ico" />
+    <ApplicationDefinition Remove="App.xaml" />
+    <Compile Remove="AppExt.cs" />
+    <Compile Remove="Views\Component\ItemPage.xaml.cs" />
+    <Compile Remove="Views\Component\ItemsPageBase.cs" />
+    <Compile Remove="Views\Component\PageHeader.xaml.cs" />
+    <Compile Remove="Views\Navigation\NavigationRootPage.xaml.cs" />
+    <Compile Remove="Views\Pages\SettingsPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    <PackageReference Include="WPF-UI" Version="3.0.0-preview.6" />
+    <Page Remove="Views\Component\ItemPage.xaml" />
+    <Page Remove="Views\Component\PageHeader.xaml" />
+    <Page Remove="Views\Navigation\NavigationRootPage.xaml" />
+    <Page Remove="Views\Pages\SettingsPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\applicationIcon-1024.png" />
-    <None Remove="Assets\applicationIcon-256.png" />
+    <PackageReference Include="ColorCodeStandard" Version="1.0.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.25.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Toolkit.Core\Toolkit.Core.csproj" />
-    <ProjectReference Include="..\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj" />
-    <ProjectReference Include="..\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
-    <ProjectReference Include="..\Toolkit.Modularity\Toolkit.Modularity.csproj" />
+    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Core\Toolkit.Core.csproj" />
+    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.Controls\Toolkit.Infrastructure.Controls.csproj" />
+    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj" />
+    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
+    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Modularity\Toolkit.Modularity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\applicationIcon-1024.png" />
-    <Resource Include="Assets\applicationIcon-256.png" />
+    <Page Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +55,15 @@
     <None Update="modules.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="app.manifest">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Component\" />
+    <Folder Include="Views\Navigation\" />
+    <Folder Include="Views\Pages\" />
   </ItemGroup>
 
 </Project>

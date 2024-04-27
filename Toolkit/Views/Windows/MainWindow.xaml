@@ -1,84 +1,42 @@
-﻿<Page
-    x:Class="Toolkit.Views.Windows.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Toolkit.ViewModels"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pages="clr-namespace:Toolkit.Views.Pages"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    Width="1100"
-    Height="650"
-    Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
-    d:DataContext="{d:DesignInstance local:MainWindowViewModel,
-                                     IsDesignTimeCreatable=False}"
-    d:Background="{DynamicResource ApplicationBackgroundBrush}"
-    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-    ExtendsContentIntoTitleBar="True"
-    WindowBackdropType="None"
-    WindowCornerPreference="Round"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+﻿<Window x:Class="Toolkit.Views.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+        xmlns:ToolkitControls="clr-namespace:Toolkit.Infrastructure.Controls;assembly=Toolkit.Infrastructure.Controls"
+        xmlns:local="clr-namespace:Toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        
+        ui:ThemeManager.IsThemeAware="True"
+        ui:TitleBar.ExtendViewIntoTitleBar="True"    
+        ui:WindowHelper.SystemBackdropType="Tabbed"
+        ui:TitleBar.IsBackButtonVisible="False"
+        ui:WindowHelper.UseModernWindowStyle="False"
+        >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <ui:NavigationCompact
-            x:Name="RootNavigation"
-            Grid.Column="0"
-            Footer="{Binding ViewModel.NavigationFooter, Mode=TwoWay}"
-            Frame="{Binding ElementName=RootFrame, Mode=OneWay}"
-            Items="{Binding ViewModel.NavigationItems, Mode=TwoWay}" />
-
-        <ui:TitleBar
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Margin="42,0,0,0" VerticalAlignment="Top"
-            Icon="pack://application:,,,/Toolkit;component/Assets/applicationIcon-256.png">
-            <!--<ui:TitleBar.Tray>
-                <ui:NotifyIcon
-                    FocusOnLeftClick="True"
-                    Icon="pack://application:,,,/Assets/applicationIcon-256.png"
-                    MenuOnRightClick="True"
-                    TooltipText="Toolkit">
-                    <ui:NotifyIcon.Menu>
-                        <ContextMenu ItemsSource="{Binding ViewModel.TrayMenuItems, Mode=OneWay}" />
-                    </ui:NotifyIcon.Menu>
-                </ui:NotifyIcon>
-            </ui:TitleBar.Tray>-->
-
-            <ui:TitleBar.Title>
-                <!--Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"-->
-                <MultiBinding Converter="{StaticResource TitleBindingConverter}" Mode="OneWay" Delay="2000">
-                    <Binding Path="ViewModel.ApplicationTitle" />
-                    <Binding ElementName="RootNavigation" Path="Frame" />
-                </MultiBinding>
-            </ui:TitleBar.Title>
-        </ui:TitleBar>
-
-        <Grid Grid.Column="1">
-            <Border
-                Margin="0,40,0,0"
-                Background="{DynamicResource ControlFillColorDefaultBrush}"
-                CornerRadius="8,0,0,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ui:Breadcrumb
-                        Grid.Row="0"
-                        Margin="56,12"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        FontSize="28"
-                        Navigation="{Binding ElementName=RootNavigation, Mode=OneWay}" />
-                    <Frame x:Name="RootFrame" Grid.Row="1" Margin="10" />
-                </Grid>
-            </Border>
-        </Grid>
+        <!--<ToolkitControls:PackIcon Margin="3"
+                         Background="Transparent"
+                         Cursor="Hand"
+                         Kind="FlashTriangleOutline"
+                         ToolTip="View XAML">
+                <ToolkitControls:PackIcon.Style>
+                <Style TargetType="ToolkitControls:PackIcon" BasedOn="{StaticResource {x:Type ToolkitControls:PackIcon}}">
+                        <Setter Property="Opacity" Value="0.4" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="1" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToolkitControls:PackIcon.Style>
+            </ToolkitControls:PackIcon>-->
+        <Border Width="100" Height="100">
+            <StackPanel>
+            <ToolkitControls:PackIcon Kind="PrinterReceiptStop" Width="50" Height="50" />
+            <ui:PathIcon Data="M5 5H7V11H5V5M10 5H8V11H10V5M5 19H7V13H5V19M10 13H8V19H10V17H15V15H10V13M2 21H4V3H2V21M20 3V7H13V5H11V11H13V9H20V15H18V13H16V19H18V17H20V21H22V3H20Z" />
+            </StackPanel>
+        </Border>
     </Grid>
-</Page>
+</Window>

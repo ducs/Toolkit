@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net6.0-windows10.0.18362.0</TargetFrameworks>
+    <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
 	<LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Entity\" />
+    <Folder Include="Contracts\DatModels\" />
     <Folder Include="EntityInterface\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WPF-UI" Version="3.0.0-preview.6" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.25.1" />
   </ItemGroup>
 
 </Project>

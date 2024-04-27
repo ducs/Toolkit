@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net6.0-windows10.0.18362.0</TargetFrameworks>
+    <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
 	<LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -11,7 +11,7 @@
   <Import Project="..\Toolkit.App.Share\Toolkit.App.Share.projitems" Label="Shared" />
 
   <ItemGroup>
-    <ProjectReference Include="..\Toolkit\Toolkit.csproj" />
+    <ProjectReference Include="C:\Users\Admin\source\repos\Toolkit\Toolkit\Toolkit.csproj" />
   </ItemGroup>
 
 </Project>

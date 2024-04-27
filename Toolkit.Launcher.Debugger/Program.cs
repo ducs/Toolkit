@@ -8,7 +8,7 @@ namespace Toolkit.Launcher.Debugger
         [STAThread]
         private static void Main(string[] args)
         {
-            AppExt.Main(args);
+            App.Main();
         }
     }
 }

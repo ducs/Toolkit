@@ -15,6 +15,7 @@ namespace Toolkit.Services
 {
     public class GetJsonCryptCodeService : IGetCryptCodeService
     {
+        private const string CryptCodeJsonNote = "CryptCode";
         private class JsonCryptCode
         {
             public string Key { get; set; }
@@ -24,16 +25,21 @@ namespace Toolkit.Services
         public async Task<string> GetCryptCodeAsync(string key)
         //public string GetCryptCode(string key)
         {
-            Debug.Assert(App.GetRequiredService<IConfigService>()
-                .GetConfig<List<JsonCryptCode>>("CryptCode")
-                .Where<JsonCryptCode>(i => i.Key == key).FirstOrDefault()
-                 != null);
+            Debug.Assert(
+                App.GetRequiredService<IConfigService>()
+                    .GetConfig<List<JsonCryptCode>>(CryptCodeJsonNote)
+                    .Where<JsonCryptCode>(i => i.Key == key)
+                    .FirstOrDefault() != null
+            );
 
             return await Task<string>.Run(
-                () => App.GetRequiredService<IConfigService>()
-                .GetConfig<List<JsonCryptCode>>("CryptCode")
-                .Where<JsonCryptCode>(i => i.Key == key).FirstOrDefault().Code
-                );
+                () =>
+                    App.GetRequiredService<IConfigService>()
+                        .GetConfig<List<JsonCryptCode>>(CryptCodeJsonNote)
+                        .Where<JsonCryptCode>(i => i.Key == key)
+                        .FirstOrDefault()
+                        .Code
+            );
         }
     }
 }

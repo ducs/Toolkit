@@ -11,7 +11,7 @@ namespace Toolkit.Core.Contracts.Models
     {
         public string Version { get; set; }
         public string Author { get; set; }
-        public DateOnly CreateDate { get; set; }
-        public DateOnly LastModified { get; set; }
+        public DateOnly CreatedDate { get; set; }
+        public DateOnly LastModifiedBy { get; set; }
     }
 }

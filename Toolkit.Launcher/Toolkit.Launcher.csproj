@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net6.0-windows10.0.18362.0</TargetFrameworks>
+    <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
 	<ApplicationManifest>App.manifest</ApplicationManifest>
 	<LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Toolkit\Toolkit.csproj" />
+    <ProjectReference Include="..\Toolkit.Core\Toolkit.Core.csproj" />
+    <ProjectReference Include="..\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
+    <ProjectReference Include="C:\Users\Admin\source\repos\Toolkit\Toolkit\Toolkit.csproj" />
   </ItemGroup>
 
   <ItemGroup>

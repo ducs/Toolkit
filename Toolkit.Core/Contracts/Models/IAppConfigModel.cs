@@ -1,9 +1,9 @@
-﻿using System;
+﻿using iNKORE.UI.WPF.Modern;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wpf.Ui.Appearance;
 
 namespace Toolkit.Core.Contracts.Models
 {
@@ -21,7 +21,9 @@ namespace Toolkit.Core.Contracts.Models
         /// </summary>
         bool MultiRuntime { get; set; }
 
-        Wpf.Ui.Appearance.ApplicationTheme Theme { get; set; }
+        bool RunAsAdmin { get; set; }
+
+        ElementTheme Theme { get; set; }
 
         string ConfigurationsFolder { get; set; }
 

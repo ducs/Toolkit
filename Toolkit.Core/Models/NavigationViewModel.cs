@@ -4,10 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Toolkit.Core.Contracts.Dto;
 
 namespace Toolkit.Models
-{
+{ /*
     public class NavigationViewModel
     {
         #region INavigationViewDto
@@ -120,4 +119,5 @@ namespace Toolkit.Models
 
         #endregion INavigationViewDto
     }
+    */
 }

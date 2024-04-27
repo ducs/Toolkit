@@ -20,10 +20,10 @@ namespace Toolkit
         }
         */
 
-       // public static void Main() //string[] args
-      //  {
+        public static void Main() //string[] args
+        {
             //_args = args;
          //   Main();
-        //}
+        }
     }
 }

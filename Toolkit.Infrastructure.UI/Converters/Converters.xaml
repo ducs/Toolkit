@@ -2,4 +2,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Converters="clr-namespace:Toolkit.Infrastructure.UI.Converters">
     <Converters:TitleBindingConverter x:Key="TitleBindingConverter" />
+    <Converters:NullToUnsetValueConverter x:Key="NullToUnsetValueConverter" />
 </ResourceDictionary>

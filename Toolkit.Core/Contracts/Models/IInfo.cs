@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Toolkit.Core.Models;
 
 namespace Toolkit.Core.Contracts.Models
 {
@@ -11,8 +12,10 @@ namespace Toolkit.Core.Contracts.Models
     /// </summary>
     public interface IInfo
     {
-        string Id { get; init; }
-        public string Name { get; set; }
+        public string UniqueId { get; init; }
+        public string Title { get; set; }
+        public string Subtitle { get; set; }
         public string Description { get; set; }
+        public PageInfoDateGroup Group { get; set; }
     }
 }

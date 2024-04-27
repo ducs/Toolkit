@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-windows</TargetFrameworks>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+	<LangVersion>latest</LangVersion>
+	<IsPublishable>False</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.25.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj" />
+    <ProjectReference Include="..\Toolkit.Resources\Toolkit.Resources.csproj" />
+  </ItemGroup>
+
+</Project>
