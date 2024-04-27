@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit", "Toolkit\Toolkit.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C9287875-EF65-48CE-B91F-44A97F7BF5A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Services", "D:\system\syslink\repos\Toolkit\Toolkit.Services\Toolkit.Services.csproj", "{A8D8F09B-B551-409D-9875-2121A017D60A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Services", "Toolkit.Services\Toolkit.Services.csproj", "{A8D8F09B-B551-409D-9875-2121A017D60A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Services.Interfaces", "D:\system\syslink\repos\Toolkit\Toolkit.Services.Interfaces\Toolkit.Services.Interfaces.csproj", "{C4FF24E9-BBDF-4B08-B90B-72B049FA1DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Services.Interfaces", "Toolkit.Services.Interfaces\Toolkit.Services.Interfaces.csproj", "{C4FF24E9-BBDF-4B08-B90B-72B049FA1DD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "share", "share", "{F7BE69AD-BDAB-4F69-9E72-17CAD63C2BC7}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Toolkit.App.Share", "D:\system\syslink\repos\Toolkit\Toolkit.App.Share\Toolkit.App.Share.shproj", "{4C78DEFD-422A-4600-8881-0D1DB9E74D13}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Toolkit.App.Share", "Toolkit.App.Share\Toolkit.App.Share.shproj", "{4C78DEFD-422A-4600-8881-0D1DB9E74D13}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modularity", "Modularity", "{42141DFA-EB68-47A6-84A8-964504AF7104}"
 EndProject
@@ -21,23 +21,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libary", "Libary", "{576914
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{2BB7A45E-80EA-4B31-8A2F-E524130B5302}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Core", "D:\system\syslink\repos\Toolkit\Toolkit.Core\Toolkit.Core.csproj", "{007DDF7D-B4C1-4585-9454-503AEE2FA7E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Core", "Toolkit.Core\Toolkit.Core.csproj", "{007DDF7D-B4C1-4585-9454-503AEE2FA7E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure", "D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj", "{6C48F925-FD96-4E80-918B-F4AAB8FD360D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure", "Toolkit.Infrastructure\Toolkit.Infrastructure.csproj", "{6C48F925-FD96-4E80-918B-F4AAB8FD360D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{24567AB8-AFB0-4BA7-8162-6443E7EB71AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure.UI", "D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj", "{623D3949-77FC-49D7-842E-88E00AD3182A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure.UI", "Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj", "{623D3949-77FC-49D7-842E-88E00AD3182A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Launcher", "D:\system\syslink\repos\Toolkit\Toolkit.Launcher\Toolkit.Launcher.csproj", "{DDDF1A5E-D096-42A3-A73B-BCAA0ED9B498}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Launcher", "Toolkit.Launcher\Toolkit.Launcher.csproj", "{DDDF1A5E-D096-42A3-A73B-BCAA0ED9B498}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Launcher.Debugger", "D:\system\syslink\repos\Toolkit\Toolkit.Launcher.Debugger\Toolkit.Launcher.Debugger.csproj", "{69ABB79D-1650-4863-BE9D-A09C1A073EFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Launcher.Debugger", "Toolkit.Launcher.Debugger\Toolkit.Launcher.Debugger.csproj", "{69ABB79D-1650-4863-BE9D-A09C1A073EFE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Modularity", "D:\system\syslink\repos\Toolkit\Toolkit.Modularity\Toolkit.Modularity.csproj", "{C43DC95B-248E-4F67-ABD2-F62E5F3CD359}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Modularity", "Toolkit.Modularity\Toolkit.Modularity.csproj", "{C43DC95B-248E-4F67-ABD2-F62E5F3CD359}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Resources", "D:\system\syslink\repos\Toolkit\Toolkit.Resources\Toolkit.Resources.csproj", "{1C74348F-C20E-4027-80DD-A9E846412DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Resources", "Toolkit.Resources\Toolkit.Resources.csproj", "{1C74348F-C20E-4027-80DD-A9E846412DF5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure.Controls", "D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.Controls\Toolkit.Infrastructure.Controls.csproj", "{75D498EB-AD3E-4F9C-8CF9-89EA75414C93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Infrastructure.Controls", "Toolkit.Infrastructure.Controls\Toolkit.Infrastructure.Controls.csproj", "{75D498EB-AD3E-4F9C-8CF9-89EA75414C93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,7 +102,7 @@ Global
 		SolutionGuid = {4B75336F-947D-4AB2-B47B-AF8B3243B1AC}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		D:\system\syslink\repos\Toolkit\Toolkit.App.Share\Toolkit.App.Share.projitems*{4c78defd-422a-4600-8881-0d1db9e74d13}*SharedItemsImports = 13
-		D:\system\syslink\repos\Toolkit\Toolkit.App.Share\Toolkit.App.Share.projitems*{69abb79d-1650-4863-be9d-a09c1a073efe}*SharedItemsImports = 5
+		Toolkit.App.Share\Toolkit.App.Share.projitems*{4c78defd-422a-4600-8881-0d1db9e74d13}*SharedItemsImports = 13
+		Toolkit.App.Share\Toolkit.App.Share.projitems*{69abb79d-1650-4863-be9d-a09c1a073efe}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

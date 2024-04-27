@@ -11,7 +11,7 @@
   <Import Project="..\Toolkit.App.Share\Toolkit.App.Share.projitems" Label="Shared" />
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Admin\source\repos\Toolkit\Toolkit\Toolkit.csproj" />
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj" />
   </ItemGroup>
 
 </Project>

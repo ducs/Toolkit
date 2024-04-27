@@ -37,11 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Core\Toolkit.Core.csproj" />
-    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.Controls\Toolkit.Infrastructure.Controls.csproj" />
-    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj" />
-    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
-    <ProjectReference Include="D:\system\syslink\repos\Toolkit\Toolkit.Modularity\Toolkit.Modularity.csproj" />
+    <ProjectReference Include="..\Toolkit.Core\Toolkit.Core.csproj" />
+    <ProjectReference Include="..\Toolkit.Infrastructure.Controls\Toolkit.Infrastructure.Controls.csproj" />
+    <ProjectReference Include="..\Toolkit.Infrastructure.UI\Toolkit.Infrastructure.UI.csproj" />
+    <ProjectReference Include="..\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
+    <ProjectReference Include="..\Toolkit.Modularity\Toolkit.Modularity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

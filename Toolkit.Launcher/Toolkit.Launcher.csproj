@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Toolkit.Core\Toolkit.Core.csproj" />
     <ProjectReference Include="..\Toolkit.Infrastructure\Toolkit.Infrastructure.csproj" />
-    <ProjectReference Include="C:\Users\Admin\source\repos\Toolkit\Toolkit\Toolkit.csproj" />
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj" />
   </ItemGroup>
 
   <ItemGroup>
