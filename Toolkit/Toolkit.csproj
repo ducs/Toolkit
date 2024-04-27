@@ -32,7 +32,7 @@
   <ItemGroup>
     <PackageReference Include="ColorCodeStandard" Version="1.0.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.25.1" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.27" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
 
