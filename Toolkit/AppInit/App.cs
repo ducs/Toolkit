@@ -232,7 +232,7 @@ namespace Toolkit
 
             //_options = App.GetService<IOptionsSnapshot<IAppConfigModel>>();
 
-            if (Options.Value.Theme != ThemeHelper.RootTheme)
+            if (Options.Value.Theme != Toolkit.Helper.ThemeHelper.RootTheme)
             {
                 ThemeHelper.RootTheme = Options.Value.Theme;
             }

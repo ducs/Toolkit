@@ -38,7 +38,7 @@ public partial class MainWindow
     {
         base.OnSourceInitialized(e);
 
-        iNKORE.UI.WPF.Modern.Helpers.DispatcherHelper.RunOnMainThread(() =>
+        DispatcherHelper.RunOnMainThread(() =>
         {
             if (this == Application.Current.MainWindow)
             {
@@ -78,7 +78,7 @@ public partial class MainWindow
 
         if (!e.Cancel)
         {
-            iNKORE.UI.WPF.Modern.Helpers.DispatcherHelper.RunOnMainThread(() =>
+            DispatcherHelper.RunOnMainThread(() =>
             {
                 if (this == Application.Current.MainWindow)
                 {

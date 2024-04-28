@@ -1,12 +1,14 @@
-﻿using iNKORE.UI.WPF.Modern.Helpers;
+﻿using iNKORE.UI.WPF.Helpers;
+using iNKORE.UI.WPF.Modern.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Toolkit;
+using Toolkit.Helper;
 using Windows.Storage;
-
 
 namespace Toolkit.Helper
 {
@@ -58,14 +60,14 @@ namespace Toolkit.Helper
                     ThemeManager.SetRequestedTheme(window, value);
                 }
 
-                if ( PackagedAppHelper.IsPackagedApp)
+                if (PackagedAppHelper.IsPackagedApp)
                 {
-                    ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] =
-                        value.ToString();
+                    ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
                 }
                 else
                 {
-                    Properties.Settings.Default.SelectedAppTheme = value.ToString();
+                    //Properties.Settings.Default.SelectedAppTheme = value.ToString();
+                    Properties.Settings.Default.SelectedAppTheme = (int)value;
                     Properties.Settings.Default.Save();
                 }
 
@@ -75,14 +77,17 @@ namespace Toolkit.Helper
 
         public static void Initialize()
         {
-            string savedTheme = PackagedAppHelper.IsPackagedApp
-                ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString()
-                : Properties.Settings.Default.SelectedAppTheme;
-
-            if (savedTheme != null)
+            try
             {
-                RootTheme = App.GetEnum<ElementTheme>(savedTheme);
+                //string savedTheme = PackagedAppHelper.IsPackagedApp ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString() : Properties.Settings.Default.SelectedAppTheme;
+                string savedTheme = PackagedAppHelper.IsPackagedApp ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString() : ((ElementTheme)Properties.Settings.Default.SelectedAppTheme).ToString();
+
+                if (savedTheme != null)
+                {
+                    RootTheme = App.GetEnum<ElementTheme>(savedTheme);
+                }
             }
+            catch { }
         }
 
         public static bool IsDarkTheme()
@@ -94,6 +99,8 @@ namespace Toolkit.Helper
             return RootTheme == ElementTheme.Dark;
         }
 
-        public static void UpdateSystemCaptionButtonColors() { }
+        public static void UpdateSystemCaptionButtonColors()
+        {
+        }
     }
 }
