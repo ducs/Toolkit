@@ -136,7 +136,7 @@ namespace Toolkit
 
                         services.AddScoped<ILoginService, LoginService>();
                         services.AddScoped<ICryptService, CryptService>();
-                        services.AddScoped<IGetCryptCodeService, GetJsonCryptCodeService>();
+                        services.AddScoped<IGetCryptPasswordService, GetJsonCryptCodeService>();
 
                         // All other pages and view models
                         services.AddTransientFromNamespace(
@@ -247,7 +247,7 @@ namespace Toolkit
             {
                 //取得密码
                 //string cryptCode = await GetService<IGetCryptCodeService>().GetCryptCodeAsync("GlobalCrypt");
-                string cryptCode = await GetRequiredService<IGetCryptCodeService>()
+                string cryptCode = await GetRequiredService<IGetCryptPasswordService>()
                     .GetCryptCodeAsync("GlobalCrypt");
 
                 //解密密码
@@ -294,14 +294,6 @@ namespace Toolkit
 
         public static bool IsMultiThreaded { get; } = false;
 
-        public static TEnum GetEnum<TEnum>(string text)
-            where TEnum : struct
-        {
-            if (!typeof(TEnum).GetTypeInfo().IsEnum)
-            {
-                throw new InvalidOperationException("Generic parameter 'TEnum' must be an enum.");
-            }
-            return (TEnum)Enum.Parse(typeof(TEnum), text);
-        }
+
     }
 }

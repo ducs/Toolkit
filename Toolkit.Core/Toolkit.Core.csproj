@@ -10,11 +10,11 @@
   <ItemGroup>
     <Folder Include="Contracts\DatModels\" />
     <Folder Include="EntityInterface\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.30" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

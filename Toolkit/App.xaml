@@ -5,56 +5,63 @@
     xmlns:local="clr-namespace:Toolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    StartupUri="Views\Windows\MainWindow.xaml">
+    xmlns:presets="clr-namespace:Toolkit.Presets">
+    <!--StartupUri="Views\Windows\MainWindow.xaml"-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/Toolkit.Infrastructure.Controls;component/Themes/Generic.xaml" />-->
-                <ResourceDictionary Source="pack://application:,,,/Toolkit.Infrastructure.UI;component/Converters/Converters.xaml" />
-
                 <ui:ThemeResources CanBeAccessedAcrossThreads="{x:Static local:App.IsMultiThreaded}">
                     <ui:ThemeResources.ThemeDictionaries>
-                        <ResourceDictionary x:Key="Light">
-                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="#FFEDEDED" />
+                        <ResourceDictionary x:Key="Light" ui:ThemeDictionary.Key="Light">
+                            <ResourceDictionary.MergedDictionaries>
+                                <presets:ColorPresetResources TargetTheme="Light" />
+                                <presets:ShapePresetResources />
+                            </ResourceDictionary.MergedDictionaries>
+                            <Thickness x:Key="SearchBoxBorderThickness">0</Thickness>
+                            <SolidColorBrush x:Key="CustomThemeBrush" Color="Red" />
+                            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FFF1F1F1" />
+                            <SolidColorBrush x:Key="PageHeaderForegroundBrush" Color="Black" />
+                            <Thickness x:Key="ControlExampleDisplayBorderThickness">0</Thickness>
+                            <SolidColorBrush x:Key="SearchBoxBorderBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="HomePageBackgroundBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                            <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="{StaticResource SystemAltHighColor}" />
+                            <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
                         </ResourceDictionary>
-                        <ResourceDictionary x:Key="Dark">
-                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="#FF202020" />
+
+                        <ResourceDictionary x:Key="Dark" ui:ThemeDictionary.Key="Dark">
+                            <ResourceDictionary.MergedDictionaries>
+                                <presets:ColorPresetResources TargetTheme="Dark" />
+                                <presets:ShapePresetResources />
+                            </ResourceDictionary.MergedDictionaries>
+                            <Thickness x:Key="SearchBoxBorderThickness">0</Thickness>
+                            <SolidColorBrush x:Key="CustomThemeBrush" Color="Yellow" />
+                            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FF232323" />
+                            <SolidColorBrush x:Key="PageHeaderForegroundBrush" Color="White" />
+                            <Thickness x:Key="ControlExampleDisplayBorderThickness">0</Thickness>
+                            <SolidColorBrush x:Key="SearchBoxBorderBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="HomePageBackgroundBrush" Color="Transparent" />
+                            <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="#FF282828" />
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                            <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+                        </ResourceDictionary>
+
+                        <ResourceDictionary x:Key="HighContrast" ui:ThemeDictionary.Key="HighContrast">
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="HighContrast.xaml" />
+                            </ResourceDictionary.MergedDictionaries>
+                            <Thickness x:Key="SearchBoxBorderThickness">2</Thickness>
+                            <Thickness x:Key="ControlExampleDisplayBorderThickness">1</Thickness>
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                            <SolidColorBrush x:Key="HomePageBackgroundBrush" Color="{DynamicResource SystemColorWindowColor}" />
+                            <SolidColorBrush x:Key="SearchBoxBorderBrush" Color="{DynamicResource SystemColorWindowTextColor}" />
+                            <SolidColorBrush x:Key="ControlExampleDisplayBrush" Color="{DynamicResource SystemColorWindowColor}" />
+                            <SolidColorBrush x:Key="PageHeaderForegroundBrush" Color="{DynamicResource SystemColorWindowTextColor}" />
                         </ResourceDictionary>
                     </ui:ThemeResources.ThemeDictionaries>
                 </ui:ThemeResources>
-                <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style x:Key="OptionsPanelStyle" TargetType="ui:SimpleStackPanel">
-                <Setter Property="Spacing" Value="12" />
-                <Style.Resources>
-                    <Style BasedOn="{StaticResource {x:Type ComboBox}}" TargetType="ComboBox">
-                        <Setter Property="MinWidth" Value="200" />
-                    </Style>
-                    <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
-                        <Setter Property="MinWidth" Value="200" />
-                    </Style>
-                    <Style BasedOn="{StaticResource {x:Type DatePicker}}" TargetType="DatePicker">
-                        <Setter Property="MinWidth" Value="200" />
-                    </Style>
-                </Style.Resources>
-            </Style>
-
-            <Thickness x:Key="ControlPageContentMargin">24,0,24,20</Thickness>
-
-            <Style x:Key="ControlPageContentPanelStyle" TargetType="ui:SimpleStackPanel">
-                <Setter Property="Margin" Value="{StaticResource ControlPageContentMargin}" />
-                <Setter Property="Spacing" Value="16" />
-            </Style>
-
-            <Style x:Key="ScrollableContentDialogStyle" TargetType="ui:ContentDialog">
-                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-                <Style.Resources>
-                    <Thickness x:Key="ContentDialogContentMargin">24,0,24,0</Thickness>
-                    <Thickness x:Key="ContentDialogContentScrollViewerMargin">-24,0,-24,0</Thickness>
-                    <Thickness x:Key="ContentDialogTitleMargin">24,0,24,12</Thickness>
-                </Style.Resources>
-            </Style>
 
             <Style
                 x:Key="RichTextBlockStyle"

@@ -9,7 +9,7 @@ namespace Toolkit.Core.Contracts.Services.Crypt;
 //加密解密接口
 public interface ICryptService
 {
-    string Decrypt(string src, string password);
+    string Decrypt(string src, string CryptPassword);
 
-    string Encrypt(string src, string password);
+    string Encrypt(string src, string CryptPassword);
 }

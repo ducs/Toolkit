@@ -1,5 +1,7 @@
 ﻿using iNKORE.UI.WPF.Helpers;
+using iNKORE.UI.WPF.Modern;
 using iNKORE.UI.WPF.Modern.Helpers;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +9,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Toolkit;
-using Toolkit.Helper;
 using Windows.Storage;
 
-namespace Toolkit.Helper
+namespace Toolkit.Core.Helper
 {
     /// <summary>
     /// Class providing functionality around switching and restoring theme settings
     /// </summary>
     public static class ThemeHelper
     {
+
+        static ThemeHelper()
+        {
+            SystemEvents_UserPreferenceChanged(null, null);
+            if (Environment.OSVersion.Version.Build > 17763)
+            {
+                SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+            }
+        }
+        private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            RegistryKey registryKey = Registry.CurrentUser;
+            RegistryKey personalize = registryKey.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+            ThemeHelper.RootTheme = Convert.ToBoolean(personalize.GetValue("AppsUseLightTheme")) ? ElementTheme.Light : ElementTheme.Dark;
+        }
+
         private const string SelectedAppThemeKey = "SelectedAppTheme";
 
         /// <summary>
@@ -35,7 +52,7 @@ namespace Toolkit.Helper
                     }
                 }
 
-                return Toolkit.Core.Services.Generic.GetEnum<ElementTheme>(ElementTheme.Default.ToString());
+                  return Toolkit.Core.Services.Generic.GetEnum<ElementTheme>(ElementTheme.Default.ToString());
             }
         }
 
@@ -60,16 +77,16 @@ namespace Toolkit.Helper
                     ThemeManager.SetRequestedTheme(window, value);
                 }
 
-                if (PackagedAppHelper.IsPackagedApp)
-                {
-                    ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
-                }
-                else
-                {
-                    //Properties.Settings.Default.SelectedAppTheme = value.ToString();
-                    Properties.Settings.Default.SelectedAppTheme = (int)value;
-                    Properties.Settings.Default.Save();
-                }
+                //if (PackagedAppHelper.IsPackagedApp)
+                //{
+                //    ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+                //}
+                //else
+                //{
+                //    //Properties.Settings.Default.SelectedAppTheme = value.ToString();
+                //    Properties.Settings.Default.SelectedAppTheme = (int)value;
+                //    Properties.Settings.Default.Save();
+                //}
 
                 UpdateSystemCaptionButtonColors();
             }
@@ -80,11 +97,11 @@ namespace Toolkit.Helper
             try
             {
                 //string savedTheme = PackagedAppHelper.IsPackagedApp ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString() : Properties.Settings.Default.SelectedAppTheme;
-                string savedTheme = PackagedAppHelper.IsPackagedApp ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString() : ((ElementTheme)Properties.Settings.Default.SelectedAppTheme).ToString();
+                string savedTheme = PackagedAppHelper.IsPackagedApp ? ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString() : ElementTheme.Light.ToString();//((ElementTheme)Properties.Settings.Default.SelectedAppTheme).ToString();
 
                 if (savedTheme != null)
                 {
-                    RootTheme = Toolkit.Core.Services.Generic.GetEnum<ElementTheme>(savedTheme);
+                    RootTheme = Services.Generic.GetEnum<ElementTheme>(savedTheme);
                 }
             }
             catch { }

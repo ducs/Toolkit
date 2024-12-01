@@ -8,8 +8,8 @@
 	<LangVersion>latest</LangVersion>
 	<EnablePreviewFeatures>true</EnablePreviewFeatures>
 	<AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
-	<StartupObject></StartupObject>
 	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

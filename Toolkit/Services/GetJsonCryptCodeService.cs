@@ -13,7 +13,7 @@ using Toolkit.Core.Contracts.Services.Crypt;
 
 namespace Toolkit.Services
 {
-    public class GetJsonCryptCodeService : IGetCryptCodeService
+    public class GetJsonCryptCodeService : IGetCryptPasswordService
     {
         private const string CryptCodeJsonNote = "CryptCode";
         private class JsonCryptCode
